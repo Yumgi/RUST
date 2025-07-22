@@ -10,6 +10,11 @@ Bienvenue sur mon dépôt d'apprentissage **Rust** ! Ce projet regroupe mes note
 
 ---
 
+## 📝 TP noté : CompteBancaire
+
+🔗 [Consulter le code et le sujet du TP CompteBancaire](https://github.com/Yumgi/RUST/tree/main/Jour_1/CompteBancaire)
+
+---
 
 ## 📚 Liens utiles
 
