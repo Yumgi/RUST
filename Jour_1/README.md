@@ -156,13 +156,73 @@ if choix == 0 || choix > options.len() {
 }
 ```
 
+## 6. Boucles avancées : loop et while
+
+```rust
+// Boucle infinie avec break
+let mut compteur = 0;
+loop {
+    println!("Compteur : {}", compteur);
+    compteur += 1;
+    if compteur == 3 {
+        break;
+    }
+}
+
+// Boucle while classique
+let mut compteur2 = 0;
+while compteur2 < 4 {
+    println!("Compteur2 : {}", compteur2);
+    compteur2 += 1;
+}
+```
+##7. Structures (struct)
+Rust n’étant pas un langage orienté objet classique, on utilise des struct pour regrouper des données.
+
+###Exemple simple
+```rust
+struct Salarie {
+    nom: String,
+    prenom: String,
+    age: u32,
+}
+
+impl Salarie {
+    fn afficher(&self) {
+        println!("Salarie : {} {}, {} ans", self.prenom, self.nom, self.age);
+    }
+}
+
+fn main() {
+    let salarie1 = Salarie {
+        nom: String::from("Harbaoui"),
+        prenom: String::from("Aymen"),
+        age: 40,
+    };
+
+    let salarie2 = Salarie {
+        nom: String::from("Conche"),
+        prenom: String::from("Nicolas"),
+        age: 23,
+    };
+
+    salarie1.afficher();
+    salarie2.afficher();
+}
+```
+
+
+
 ## 🔑 Points clés à retenir
 
-1. **Sécurité de type** : Rust vérifie les types à la compilation
-2. **Inférence de type** : Rust peut déduire le type automatiquement
-3. **Gestion d'erreur** : Utilisation de `match` pour gérer les erreurs
-4. **Performance** : Pas de garbage collector, gestion mémoire à la compilation
-5. **Expressivité** : Syntaxe claire et concise
+1.Rust est fortement typé et vérifie les types à la compilation.
+2.Le style de nommage est le snake_case.
+3.Les fonctions retournent la dernière valeur évaluée sans return ni point-virgule.
+4.Les boucles for utilisent des intervalles inclusifs/exclusifs.
+5.Les tableaux ([T; N]) sont statiques et les vecteurs (Vec<T>) dynamiques.
+6.La gestion d’erreur très idiomatique passe par match.
+7.Les structures sont fondamentales pour modéliser des données en Rust.
+
 
 ## 📝 Comparaison avec d'autres langages
 
@@ -183,8 +243,8 @@ fn addition(a: i32, b: i32) -> i32 {
 ```
 
 ## 🚀 Prochaines étapes
-- Ownership et borrowing
+- Ownership, borrowing et lifetimes
 - Structures et enums
 - Gestion d'erreur avancée avec `Result<T, E>`
 - Traits et génériques
-- Modules et packages
+- Modules, Crates, packages et organisation de projet
