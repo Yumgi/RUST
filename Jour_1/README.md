@@ -176,10 +176,10 @@ while compteur2 < 4 {
     compteur2 += 1;
 }
 ```
-##7. Structures (struct)
+## 7. Structures (struct)
 Rust n’étant pas un langage orienté objet classique, on utilise des struct pour regrouper des données.
 
-###Exemple simple
+### Exemple simple
 ```rust
 struct Salarie {
     nom: String,
@@ -215,13 +215,13 @@ fn main() {
 
 ## 🔑 Points clés à retenir
 
-1.Rust est fortement typé et vérifie les types à la compilation.
-2.Le style de nommage est le snake_case.
-3.Les fonctions retournent la dernière valeur évaluée sans return ni point-virgule.
-4.Les boucles for utilisent des intervalles inclusifs/exclusifs.
-5.Les tableaux ([T; N]) sont statiques et les vecteurs (Vec<T>) dynamiques.
-6.La gestion d’erreur très idiomatique passe par match.
-7.Les structures sont fondamentales pour modéliser des données en Rust.
+- Rust est fortement typé et vérifie les types à la compilation.
+- Le style de nommage est le snake_case.
+- Les fonctions retournent la dernière valeur évaluée sans return ni point-virgule.
+- Les boucles for utilisent des intervalles inclusifs/exclusifs.
+- Les tableaux ([T; N]) sont statiques et les vecteurs (Vec<T>) dynamiques.
+- La gestion d’erreur très idiomatique passe par match.
+- Les structures sont fondamentales pour modéliser des données en Rust.
 
 
 ## 📝 Comparaison avec d'autres langages
