@@ -8,13 +8,14 @@
 use std::net::{TcpListener, TcpStream};
 use std::io::{Read, Write};
 use std::thread;
+use std::sync::{Arc, Mutex};
 
-// Définition de la structure Client (stocke juste le nom ici)
+// Définition de la structure Client
+#[derive(Debug)]
 struct Client {
     name: String,
 }
 
-// Fonction qui gère chaque client
 fn gestion_client(mut stream: TcpStream, name: String) {
     let mut buffer = [0; 512];
     loop {
@@ -37,10 +38,11 @@ fn gestion_client(mut stream: TcpStream, name: String) {
 }
 
 fn main() {
-    // Lancement du serveur sur le port 8080
     let listener = TcpListener::bind("127.0.0.1:8080").expect("Serveur non lancé");
     println!("Serveur lancé sur 127.0.0.1:8080");
 
+    // Liste partagée des clients
+    let clients = Arc::new(Mutex::new(Vec::new()));
     let mut id = 1;
 
     for stream in listener.incoming() {
@@ -48,16 +50,23 @@ fn main() {
             Ok(stream) => {
                 let name = format!("Client{}", id);
                 let client = Client { name: name.clone() };
-                println!("{} connecté.", client.name);
+                
+                // Ajoute le client à la liste partagée (membership)
+                let clients_clone = Arc::clone(&clients);
+                {
+                    let mut liste = clients_clone.lock().unwrap();
+                    liste.push(client);
+                    println!("Clients connectés : {:?}", liste.iter().map(|c| &c.name).collect::<Vec<_>>());
+                }
 
-                // Création du thread pour gérer ce client
+                println!("{} connecté.", name);
+
                 thread::spawn(move || {
                     gestion_client(stream, name);
                 });
 
                 id += 1;
             }
-            // Gérer les erreurs de connexion
             Err(e) => {
                 println!("Erreur de connexion: {}", e);
             }
