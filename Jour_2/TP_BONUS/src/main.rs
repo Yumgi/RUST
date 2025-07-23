@@ -11,7 +11,7 @@ fn main() -> std::io::Result<()> {
     Fichier::creer_avec_nom("statique.txt", "Fichier crée de façon statique\n")?;
     println!("{}", "\nFichier statique créé avec succès.\n".green());
 
-    interface::interface();
+    interface::interface()?;
 
     Ok(())
 }

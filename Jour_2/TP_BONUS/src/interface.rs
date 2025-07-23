@@ -187,28 +187,22 @@ pub fn interface() -> io::Result<()> {
 
                 if Path::new(&nom).exists() {
                     let mut fichier = Fichier::new(&nom, "");
-                    match fichier.lire_du_disque() {
-                        Ok(_) => {
-                            use std::fs::metadata;
-                            match metadata(&nom) {
-                                Ok(meta) => {
-                                    let taille = meta.len();
-                                    println!("{}", "\n=== Informations sur le fichier ===".green());
-                                    println!("Nom : {}", fichier.get_nom());
-                                    println!("Date de création : {}", fichier.get_date_creation());
-                                    println!("Taille : {} octets", taille);
-                                }
-                                Err(e) => {
-                                    println!("{}", format!("Impossible d'obtenir les métadonnées : {}", e).red());
-                                }
-                            }
+                    if fichier.lire_du_disque().is_ok() {
+                        println!("{}", "\n=== Informations sur le fichier ===".green());
+                        println!("Nom : {}", fichier.get_nom());
+                        println!("Date de création : {}", fichier.get_date_creation());
+                        match fichier.get_taille() {
+                            Some(taille) => println!("Taille : {} octets", taille),
+                            None => println!("{}", "Impossible de lire la taille du fichier.".red())
                         }
-                        Err(e) => println!("{}", format!("Impossible de lire le fichier : {}", e).red()),
+                    } else {
+                        println!("{}", "Impossible de lire le fichier.".red());
                     }
-                } else {
+                    } else {
                     println!("{}", "\nCe fichier n’existe pas !\n".red());
                 }
             }
+
 
             "7" => {
                 println!("{}", "\nAu revoir !\n");
