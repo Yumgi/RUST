@@ -5,6 +5,11 @@ use std::io;
 use ecrire::Fichier;
 use chrono::Local;
 
+struct User{
+    nom:String,
+    secu: String
+}
+
 fn main() -> io::Result<()> {
     // Appel de la méthode de la structure Fichier
     let fichier = Fichier::creer(
@@ -18,9 +23,64 @@ fn main() -> io::Result<()> {
     // Affiche la date et l'heure actuelles
     let now = Local::now();
     println!("Date et heure actuelles : {} \n", now.format("%d-%m-%Y %H:%M:%S"));
+    
+
+//  Notions d'ownership ( propriété)  et membership ( appartenance à une structure ) => pour garantir 
+// la sécurité mémoire 
+
+    // 1.Ownership : 
+        // chaque valeur a un propriétaire unique, responsable de libérer la mémoire lorsqu'elle sort du scop
+        // quand le propriétaire est déplacé, l'ancien propriétaire ne peut plus y accéder
+        // quand le propriétaire sort su scoê, la valeur est automatiquement libérée
+
+    // exemple
+        let prenom = String::from("Amine"); // prenom est proprietaire de la String
+        let secu = String::from("198977787"); // secu est proprietaire de la String
+    // avec clone
+        let prenom2 = prenom.clone();
+        greetings(prenom); // propriétaire est transféré à la fontion greetings()
+    // println!("{}",prenom); //   non Erreur : ownership déplacé !!!!
+
+        println!(" clone de prenom : {}",prenom2);
+
+
+    // 2 avec emprunt & 
+        greetings2(&secu); //  emprunt immuable 
+        println!("{}", secu); // oui pas d'Erreur 
+    
+    // 3  Membership ( Appartenance à une structure )
+    //   décrit quelles sont les données contenues dans une structure Struct 
+
+    // exemple : 
+
+    let user = User{
+        nom: String::from("Amine"),
+        secu: String::from("1879716171009 55"),
+    };
+    
+    display(&user);
+
     Ok(())
 }
 
-  // A faire:    créer une structure Fichier et implémenter une fonction qui crée un fichier
-                 // et qui prend en paramètre le nom de fichier 
-                 // ecrire.rs 
+fn display(u : &User){
+
+    println!("Nom {},  secu : {}",u.nom, u.secu);
+}
+
+
+fn greetings(msg:String){
+    println!("Hello  mister, {}",msg);
+}
+
+// avec emprunt & 
+fn greetings2(msg:&String){
+    println!("Hello  mister, {}",msg);
+}
+
+
+
+
+// A faire:     créer une structure Fichier et implémenter une fonction qui crée un fichier
+                // et qui prend en paramètre le nom de fichier 
+                // ecrire.rs 
