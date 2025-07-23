@@ -73,9 +73,9 @@ cargo test
 - Utiliser cargo run en développement, cargo build --release pour les binaires optimisés.
 - Cargo rend la gestion des projets Rust ergonomique et fiable, en automatisant l’organisation, l’intégration de bibliothèques et la compilation.
 - Pour aller plus loin, explore :
-  - - cargo doc (documentation)
-  - - cargo check
-  - - création de librairies Rust avec cargo new --lib nom_librairie
+  - cargo doc (documentation)
+  - cargo check
+  - création de librairies Rust avec cargo new --lib nom_librairie
 
 
 
