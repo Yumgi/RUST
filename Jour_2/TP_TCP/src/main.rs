@@ -57,6 +57,7 @@ fn main() {
 
                 id += 1;
             }
+            // Gérer les erreurs de connexion
             Err(e) => {
                 println!("Erreur de connexion: {}", e);
             }
