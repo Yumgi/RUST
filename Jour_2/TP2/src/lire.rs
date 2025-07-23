@@ -1,20 +1,21 @@
 // lecture à partir d'un fichier
 // dans notre cas on utilise Read et BufReader
 
-use std::fs::File; // stream 
-use std::io::{self,BufReader,Read};
+use std::fs::File;
+use std::io::{self, BufReader, Read};
 
-fn main() -> io::Result<()>{
-     
-       let file = File::open("test.txt")?;
-       let mut reader = BufReader::new(file); // on crée un lecteur tamponné 
-       let mut content = String::new(); 
-       reader.read_to_string(&mut content)?;
-       
-       println!("ceci est le contenu du fichier {}", content);
+use crate::ecrire::Fichier; // Corrigez si l'import/module diffère
 
-
-
-
-    Ok(())
+impl Fichier {
+    /// Lit le contenu du fichier
+    pub fn lire(&self) -> io::Result<String> {
+        let fichier = File::open(&self.nom)?;
+        let mut lecteur = BufReader::new(fichier);
+        let mut contenu = String::new();
+        lecteur.read_to_string(&mut contenu)?;
+        println!("Contenu du fichier {} :\n \n{}", self.nom, contenu);
+        Ok(contenu)
+    }
 }
+
+

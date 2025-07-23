@@ -1,4 +1,5 @@
 mod ecrire;
+mod lire;
 
 use std::io;
 use ecrire::Fichier;
@@ -11,7 +12,7 @@ fn main() -> io::Result<()> {
     );
 
     fichier.ecrire()?; // Ecrit dans le fichier et gère potentiellement l'erreur
-
+    fichier.lire()?; // Lit le contenu du fichier et gère potentiellement l'erreur
     Ok(())
 }
 
