@@ -15,7 +15,6 @@ fn main() -> io::Result<()> {
     Ok(())
 }
 
-
-// A faire:    créer une structure Fichier et implémenter une fonction qui crée un fichier
-               // et qui prend en paramètre le nom de fichier 
-               // ecrire.rs 
+  // A faire:    créer une structure Fichier et implémenter une fonction qui crée un fichier
+                 // et qui prend en paramètre le nom de fichier 
+                 // ecrire.rs 
