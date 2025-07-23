@@ -3,80 +3,113 @@
 ## 📚 Ressources
 - Documentation officielle : [Rust by Example](https://doc.rust-lang.org/rust-by-example/)
 
-## Débuter un projet Rust avec Cargo
+## 1. Présentation de **Cargo**
 
-## 1. Présentation de Cargo
+> **Cargo** est l’outil officiel qui facilite la création, la compilation, la gestion des dépendances, les tests et l’organisation des projets Rust.
 
-Cargo est l’outil officiel pour gérer les projets Rust : il s’occupe de la compilation, des dépendances, des tests et de l'organisation du code.
+Un projet classique avec Cargo contient :
+- Un fichier **`Cargo.toml`** (configuration du projet)
+- Un dossier **`src/`** avec le point d’entrée **`main.rs`**
 
-Un projet standard Cargo est composé d’un fichier de configuration (Cargo.toml) et d’un dossier source (src/), où se trouve le point d’entrée (main.rs).
+## 2. Créer et Gérer un Projet
 
-## 2. Créer et gérer un projet
-### Créer un nouveau projet
-```text
+### ⚒️ Création d'un projet
+
+```sh
 cargo new mon_projet
 cd mon_projet
 ```
+Cela génère :
+- `mon_projet/`
+  - `Cargo.toml`
+  - `src/main.rs`
 
-Cela crée :
+### ⚙️ Compilations et exécutions
 
-- un dossier mon_projet/
-- un fichier Cargo.toml pour la configuration
-- le dossier src/ contenant le fichier ```main.rs```
+| Commande            | Action                                               |
+|---------------------|------------------------------------------------------|
+| `cargo build`       | Compile le projet                                    |
+| `cargo run`         | Compile puis exécute le projet                       |
 
-### Compiler et exécuter
-```text
-cargo build   # compile le projet
-cargo run     # compile et exécute le projet directement
-```
+## 3. Structure de Base d’un Projet Cargo
 
-## 3. Structure de base d’un projet Cargo
-```text
+```txt
 mon_projet/
- ├─ Cargo.toml
+ ├─ Cargo.toml       # Configuration et dépendances
  └─ src/
-     └─ main.rs
+     └─ main.rs      # Code source principal
 ```
-- Cargo.toml : fichier où on déclare le nom du projet, la version, les dépendances, etc.
-- src/main.rs : fichier source principal pour l’exécutable.
 
-## 4. Ajouter des dépendances
-Pour utiliser une bibliothèque externe, édite la section [dependencies] de Cargo.toml :
-```text
+## 4. Ajouter des Dépendances
+
+> Ajoute des bibliothèques externes dans la section `[dependencies]` du fichier `Cargo.toml` :
+
+```toml
 [dependencies]
 regex = "1.8.4"
 ```
-Ensuite, tu peux utiliser la bibliothèque dans ton code :
+
+📌 Utilisation dans le code :
+
 ```rust
 use regex::Regex;
 ```
-Recompile avec cargo build ou cargo run – Cargo gère automatiquement les téléchargements.
+> *La commande `cargo build` ou `cargo run` téléchargera et utilisera automatiquement les dépendances.*
 
-## 5. Ajouter et organiser des modules
-- Ajouter un fichier module (ex : src/util.rs)
-- Dans main.rs, déclarer le module :
+## 5. Organiser le Projet avec des Modules
+
+- Crée un fichier module, par exemple `src/util.rs`
+- Déclare-le dans `main.rs` :
+
 ```rust
 mod util;
 ```
-Les fonctions du module peuvent être appelées comme : util::ma_fonction();
 
-## 6. Exécuter des tests
-- Écrire des tests dans des modules marqués par #[cfg(test)].
-- Exécuter :
-```text
+- Appelle les fonctions du module ainsi :
+
+```rust
+util::ma_fonction();
+```
+
+## 6. Exécuter les Tests
+
+> Regroupe tes tests dans des modules dédiés :
+
+```rust
+#[cfg(test)]
+mod tests {
+    // Tes tests ici...
+}
+```
+
+Lance tous les tests du projet :
+
+```sh
 cargo test
 ```
 
-## 7. Bonnes pratiques d'organisation
-- Un projet peut contenir plusieurs fichiers dans src/ pour structurer les fonctions et types.
-- Les dépendances, versions et métadonnées sont centralisées dans Cargo.toml.
-- Utiliser cargo run en développement, cargo build --release pour les binaires optimisés.
-- Cargo rend la gestion des projets Rust ergonomique et fiable, en automatisant l’organisation, l’intégration de bibliothèques et la compilation.
-- Pour aller plus loin, explore :
-  - cargo doc (documentation)
-  - cargo check
-  - création de librairies Rust avec cargo new --lib nom_librairie
+## 7. Bonnes Pratiques d’Organisation
 
+- Structure le code via plusieurs fichiers dans `src/`
+- Centralise toutes les dépendances et versions dans `Cargo.toml`
+- Utilise :
+  - `cargo run` pour le développement rapide
+  - `cargo build --release` pour un binaire optimisé
+
+
+Pour aller plus loin :
+
+  cargo doc : génère la documentation du projet
+  cargo check : vérifie rapidement le code sans générer de binaire
+  cargo new --lib nom_librairie : crée une bibliothèque réutilisable
+
+
+
+## 🌟 Résumé
+
+- **Cargo** structure les projets Rust et automatise la gestion des dépendances, la compilation, les tests, et la documentation.
+- L’organisation du code et l’utilisation de modules rend les projets lisibles et maintenables.
+- Pour chaque nouvelle bibliothèque : ajoute-la dans `Cargo.toml`, utilise-la dans le code, et Cargo s’occupe du reste !
 
 
 
