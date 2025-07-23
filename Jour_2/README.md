@@ -164,6 +164,48 @@ fn main() {
 }
 ```
 
+## 🏷️ Getters et Setters en Rust
+
+En Rust, il n’est **pas recommandé** d’exposer les champs de struct directement avec `pub`.  
+On préfère utiliser des **méthodes getters (pour lire)** et **setters (pour modifier)**, qui permettent de contrôler l’accès et la modification.
+
+### Exemples de getter et setter idiomatiques
+
+```rust
+struct CompteBancaire {
+    solde: f64,
+}
+
+impl CompteBancaire {
+    // Getter (lecture, emprunt immuable)
+    pub fn get_solde(&self) -> f64 {
+        self.solde
+    }
+
+    // Setter (modification, emprunt mutable)
+    pub fn set_solde(&mut self, nouveau_solde: f64) {
+        self.solde = nouveau_solde;
+    }
+}
+
+fn main() {
+    let mut compte = CompteBancaire { solde: 1500.0 };
+
+    // Lire le solde via le getter
+    println!("Solde actuel : {}", compte.get_solde());
+
+    // Modifier le solde via le setter
+    compte.set_solde(2100.50);
+    println!("Solde modifié : {}", compte.get_solde());
+}
+```
+
+#### Remarques importantes :
+- **Getter** : signe `&self` permet de lire sans modifier l’objet.
+- **Setter** : signe `&mut self` permet de modifier l’objet (l’instance doit être mutable).
+- **Rust** préfère les méthodes explicites plutôt que les champs publics, car cela permet d’encadrer les accès/modifications et d’éviter des usages involontaires ou non sécurisés.
+- Pour les structures complexes, tu peux générer ces méthodes automatiquement avec une macro (par exemple la crate [getset]), mais à la main cela reste formateur.
+
 ## 🌟 Résumé
 
 - **Cargo** structure les projets Rust et automatise la gestion des dépendances, de la compilation, des tests et de la documentation.
