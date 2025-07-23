@@ -9,7 +9,7 @@ fn main() -> io::Result<()> {
     // Appel de la méthode de la structure Fichier
     let fichier = Fichier::creer(
         "test2.txt",
-        "Fichier créé avec la structure Fichier - ceci est un exemple",
+        "Fichier créé avec la structure Fichier - fait par Samuel\n",
     );
 
     fichier.ecrire()?; // Ecrit dans le fichier et gère potentiellement l'erreur
@@ -17,7 +17,7 @@ fn main() -> io::Result<()> {
 
     // Affiche la date et l'heure actuelles
     let now = Local::now();
-    println!("\nDate et heure actuelles : {} \n", now.format("%d-%m-%Y %H:%M:%S"));
+    println!("Date et heure actuelles : {} \n", now.format("%d-%m-%Y %H:%M:%S"));
     Ok(())
 }
 
