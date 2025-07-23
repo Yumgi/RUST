@@ -10,9 +10,27 @@ Bienvenue sur mon dépôt d'apprentissage **Rust** ! Ce projet regroupe mes note
 
 ---
 
+## 📖 Prise de note - Jour 2
+
+👉 [Voir le résumé complet du Jour 2](https://github.com/Yumgi/RUST/blob/main/Jour_2/README.md)
+
+---
+
 ## 📝 TP noté : CompteBancaire
 
 🔗 [Consulter le code et le sujet du TP CompteBancaire](https://github.com/Yumgi/RUST/tree/main/Jour_1/CompteBancaire)
+
+---
+
+## 📝 TP noté : Serveur TCP
+
+🔗 [Consulter le code et le sujet du TP Serveur TCP](https://github.com/Yumgi/RUST/tree/main/Jour_2/TP_TCP)
+
+---
+
+## 📝 TP noté : TP Bonus
+
+🔗 [Consulter le code et le sujet du TP Serveur TCP](https://github.com/Yumgi/RUST/tree/main/Jour_2/TP_BONUS)
 
 ---
 
