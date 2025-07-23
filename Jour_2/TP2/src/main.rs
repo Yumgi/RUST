@@ -3,7 +3,7 @@ mod lire;
 
 use std::io;
 use ecrire::Fichier;
-use chrono::Utc;
+use chrono::Local;
 
 fn main() -> io::Result<()> {
     // Appel de la méthode de la structure Fichier
@@ -16,8 +16,8 @@ fn main() -> io::Result<()> {
     fichier.lire()?; // Lit le contenu du fichier et gère potentiellement l'erreur
 
     // Affiche la date et l'heure actuelles
-    let now = Utc::now();
-    println!("Date et heure actuelles : {}", now.format("%Y-%m-%d %H:%M:%S"));
+    let now = Local::now();
+    println!("\nDate et heure actuelles : {} \n", now.format("%d-%m-%Y %H:%M:%S"));
     Ok(())
 }
 
